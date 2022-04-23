@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  self-pinger:
+    image: "python:3.9-alpine"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: production
+    restart: unless-stopped
+    user: nobody
+    container_name: self-pinger
+    ports:
+      - "8000:8000"
+    networks:
+      - self-pinger-internal
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    environment:
+      - SELF_PINGER_NAME
+      - SELF_PINGER_DEBUG
+      - SELF_PINGER_PERIOD
+
+networks:
+  self-pinger-internal:
+    driver: bridge
+    name: self-pinger-internal
+    external: false
