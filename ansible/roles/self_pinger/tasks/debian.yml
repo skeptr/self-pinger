@@ -1,0 +1,17 @@
+- name: Install apt deps
+  apt:
+    pkg:
+      - git
+      - python3
+      - docker.io
+      - docker-compose
+    state: present
+    install_recommends: no
+    update_cache: yes
+  become: true
+
+- name: Get self-pinger repo
+  ansible.builtin.git:
+    repo: "{{ self_pinger_git_repo }}"
+    dest: "{{ self_pinger_project_dir }}"
+    clone: yes

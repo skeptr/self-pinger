@@ -1,0 +1,7 @@
+---
+
+- name: self-pinger
+  hosts:
+    - home
+  roles:
+    - self_pinger

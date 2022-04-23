@@ -1,0 +1,7 @@
+---
+all:
+  children:
+    home:
+      hosts:
+        astra-1:
+        mint-1:

@@ -1,0 +1,2 @@
+self_pinger_git_repo: https://github.com/skeptr/self-pinger.git
+self_pinger_project_dir: $HOME/self-pinger
